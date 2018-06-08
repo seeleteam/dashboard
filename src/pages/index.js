@@ -1,3 +1,3 @@
 import Redirect from 'umi/redirect'
 
-export default () => <Redirect to="/chart/highCharts" />
+export default () => <Redirect to="/dashboard" />
