@@ -1,4 +1,4 @@
-const API_URL = 'http://wxcsdb88.com:61001'
+const API_URL = 'http://localhost:61001'
 
 // mock api
 const APIV1 = '/api/v1'
