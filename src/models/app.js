@@ -22,12 +22,10 @@ export default {
     },
     menu: [
       {
-        id: '52',
-        bpid: '5',
-        mpid: '5',
-        name: 'highCharts',
-        icon: 'bar-chart',
-        route: '/chart/highCharts',
+        id: '1',
+        icon: 'dashboard',
+        name: 'Dashboard',
+        route: '/dashboard',   
       },
     ],
     menuPopoverVisible: false,
@@ -98,7 +96,7 @@ export default {
         })
         if (location.pathname === '/login') {
           yield put(routerRedux.push({
-            pathname: '/chart/highCharts',
+            pathname: '/dashboard',
           }))
         }
       } else if (config.openPages && config.openPages.indexOf(locationPathname) < 0) {
@@ -120,12 +118,10 @@ export default {
           user: {},
           permissions: { visit: [] },
           menu: [{
-            id: '52',
-            bpid: '5',
-            mpid: '5',
-            name: 'highCharts',
-            icon: 'bar-chart',
-            route: '/chart/highCharts',
+            id: '1',
+            icon: 'dashboard',
+            name: 'Dashboard',
+            route: '/dashboard',   
           }],
         }})
         yield put({ type: 'query' })
