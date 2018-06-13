@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'dva'
 import ReactHighstock from 'react-highcharts/ReactHighstock.src'
-import { METRICS_NAME, METRICS_PATH, METRICS_PARAM_NAMESPACE, METRICS_NAMESPACE } from './const'
+import { METRICS_PATH, METRICS_PARAM_NAMESPACE, METRICS_NAMESPACE } from './const'
 import _ from 'lodash'
 
 class MetricsComponent extends React.Component {
@@ -16,7 +16,7 @@ class MetricsComponent extends React.Component {
     let {statTimeRange} = eval('this.props.' + METRICS_PARAM_NAMESPACE)
     let params = {
       precision: 'ms',
-      sql:`SELECT last("value") FROM "${METRICS_NAME}" WHERE time >= now() - (${statTimeRange}) GROUP BY time(10s), "coinbase", "networkid", "nodename" fill(null)`,
+      sql:`SELECT last("value") FROM "${this.props.dashboard.metricsName}" WHERE time >= now() - (${statTimeRange}) GROUP BY time(10s), "coinbase", "networkid", "nodename" fill(null)`,
     }
     this.props.getMetricsData(params)
   }
@@ -50,7 +50,7 @@ class MetricsComponent extends React.Component {
         selected: 1,
       },
       title: {
-        text: 'Stat The Metrics of ' + METRICS_NAME,
+        text: 'Stat The Metrics of ' + this.props.dashboard.metricsName,
       },
       exporting: {
         enabled: true,

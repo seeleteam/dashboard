@@ -1,5 +1,6 @@
 /* global window */
 import modelExtend from 'dva-model-extend'
+import { routerRedux } from 'dva/router'
 import { queryDatabase, queryNodes, queryMetrics } from '../services/dashboard'
 import _ from 'lodash'
 
@@ -12,6 +13,8 @@ export default modelExtend({
     DatabaseData: [],
     NodesData: [],
     MetricsData: [],
+
+    metricsName: '',
   },
 
   subscriptions: {
@@ -49,7 +52,14 @@ export default modelExtend({
         metricscount = metrics.data[0].Series[0].values.length
       }
       yield put({ type: 'MetricsCount', payload: metricscount })
-    },       
+    },
+    
+    * getMetricsName ({payload}, { put }) {
+      yield put({ type: 'MetricsName', payload: payload })
+      yield put(routerRedux.push({
+        pathname: '/chart/template',
+      }))
+    },
   },
 
   reducers: {
@@ -82,6 +92,12 @@ export default modelExtend({
         ...state,
         MetricsData: payload,
       }
-    },         
+    },
+    MetricsName (state, { payload }) {
+      return {
+        ...state,
+        metricsName: payload,
+      }
+    },        
   },
 })

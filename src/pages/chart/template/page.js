@@ -4,7 +4,7 @@ import { connect } from 'dva'
 import { Page } from 'components'
 import MetricsComponent from './MetricsComponent'
 import styles from './page.less'
-import { METRICS_NAME, METRICS_PATH } from './const'
+import { METRICS_PATH } from './const'
 
 const Option = Select.Option
 
@@ -17,7 +17,7 @@ class Chart extends React.Component {
   changeStatTimeRange (key) {
     this.props.getMetricsData({
       precision: 'ms',
-      sql: `SELECT last("value") FROM "${METRICS_NAME}" WHERE time >= now() - (${key}) GROUP BY time(10s), "coinbase", "networkid", "nodename" fill(null)`,
+      sql: `SELECT last("value") FROM "${this.props.dashboard.metricsName}" WHERE time >= now() - (${key}) GROUP BY time(10s), "coinbase", "networkid", "nodename" fill(null)`,
     })
   }
   render () {
