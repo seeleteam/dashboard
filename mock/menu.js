@@ -15,6 +15,13 @@ let database = [
     icon: 'code-o',
   },
   {
+    id: '5',
+    bpid: '1',
+    name: 'template',
+    icon: 'code-o',
+    route: '/chart/template',
+  },
+  {
     id: '21',
     bpid: '2',
     mpid: '2',

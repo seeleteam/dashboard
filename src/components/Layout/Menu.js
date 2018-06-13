@@ -33,12 +33,14 @@ const Menus = ({
         )
       }
       return (
+        item.name !== 'template' ?
         <Menu.Item key={item.id}>
           <Link to={item.route || '#'} style={siderFoldN ? { width: 10 } : {}}>
             {item.icon && <Icon type={item.icon} />}
             {item.name}
           </Link>
         </Menu.Item>
+        : ''
       )
     })
   }

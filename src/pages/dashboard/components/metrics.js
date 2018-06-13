@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'dva'
 import { Table } from 'antd'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import styles from './metrics.less'
 import _ from 'lodash'
 
@@ -15,8 +15,10 @@ class MetricsComponent extends React.Component {
 
   componentDidMount () {
     this.props.getMetrics()
+  } 
+  handName (record) {
+    this.props.getMetricsName(record)
   }
-
   render () {
     var metricsData = this.props.dashboard.MetricsData
     var resultData = []
@@ -33,7 +35,7 @@ class MetricsComponent extends React.Component {
           }
         }
       }
-    }       
+    }
     const columns = [
       {
         title: 'Index',
@@ -43,9 +45,13 @@ class MetricsComponent extends React.Component {
         title: 'NAME',
         dataIndex: 'name',
         key: 'name',
-        render: text => <Link to={`chart/` + text}>{text}</Link>,        
+        render: (text, record) => {
+          return (
+            <a onClick={this.handName.bind(this, text, record)}>{text}</a>
+          )
+        },
       },
-    ]
+    ]    
     return (
       <div className={styles.measureMents}>
         <b>Metrics List:</b>
@@ -65,6 +71,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getMetrics (payload) {
       dispatch({ type: 'dashboard/getMetrics', payload })
+    },
+    getMetricsName (payload) {
+      dispatch({ type: 'dashboard/getMetricsName', payload })
     },
   }
 }
