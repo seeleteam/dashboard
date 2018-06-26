@@ -15,9 +15,25 @@ class Chart extends React.Component {
     }
   }
   changeStatTimeRange (key) {
+    var pMetricsName = `${this.props.dashboard.metricsName}`
+    var pMetricsTag = pMetricsName.substring(pMetricsName.lastIndexOf(".") + 1)
+    var pMetricsSelectName = "value"
+    switch (pMetricsTag) {
+      case "count":
+      case "gauge":
+        pMetricsSelectName = "value"
+        break
+      case "histogram":
+      case "meter":
+      case "timer":
+        pMetricsSelectName = "count"
+        break
+      default:
+        pMetricsSelectName = "value"
+    }
     this.props.getMetricsData({
       precision: 'ms',
-      sql: `SELECT last("value") FROM "${this.props.dashboard.metricsName}" WHERE time >= now() - (${key}) GROUP BY time(10s), "coinbase", "networkid", "nodename" fill(null)`,
+      sql: `SELECT last("${pMetricsSelectName}") FROM "${pMetricsName}" WHERE time >= now() - (${key}) GROUP BY time(10s), "coinbase", "networkid", "nodename" fill(null)`,
     })
   }
   render () {

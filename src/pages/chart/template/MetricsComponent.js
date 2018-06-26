@@ -14,9 +14,25 @@ class MetricsComponent extends React.Component {
  
   componentDidMount () {
     let {statTimeRange} = eval('this.props.' + METRICS_PARAM_NAMESPACE)
+    let pMetricsName = `${this.props.dashboard.metricsName}`
+    let pMetricsTag = pMetricsName.substring(pMetricsName.lastIndexOf(".") + 1)
+    let pMetricsSelectName = "value"
+    switch (pMetricsTag) {
+      case "count":
+      case "gauge":
+        pMetricsSelectName = "value"
+        break
+      case "histogram":
+      case "meter":
+      case "timer":
+        pMetricsSelectName = "count"
+        break
+      default:
+        pMetricsSelectName = "value"
+    }
     let params = {
       precision: 'ms',
-      sql:`SELECT last("value") FROM "${this.props.dashboard.metricsName}" WHERE time >= now() - (${statTimeRange}) GROUP BY time(10s), "coinbase", "networkid", "nodename" fill(null)`,
+      sql:`SELECT last("${pMetricsSelectName}") FROM "${pMetricsName}" WHERE time >= now() - (${statTimeRange}) GROUP BY time(10s), "coinbase", "networkid", "nodename" fill(null)`,
     }
     this.props.getMetricsData(params)
   }
