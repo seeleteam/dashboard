@@ -55,7 +55,7 @@ class MetricsComponent extends React.Component {
     return (
       <div className={styles.measureMents}>
         <b>Metrics List:</b>
-        <Table pagination={false} columns={columns} rowKey={(record, key) => key} dataSource={resultData} />
+        <Table pagination={true} columns={columns} rowKey={(record, key) => key} dataSource={resultData} />
       </div>
     )
   }  

@@ -48,7 +48,7 @@ class Chart extends React.Component {
         <Option key={'1d'}>1d</Option>
         <Option key={'7d'}>7d</Option>    
         <Option key={'1y'}>1y</Option>                              
-      </Select>      
+      </Select>
       <div className={styles.chart}>
         <MetricsComponent />
       </div>

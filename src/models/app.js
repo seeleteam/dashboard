@@ -25,7 +25,7 @@ export default {
         id: '1',
         icon: 'dashboard',
         name: 'Dashboard',
-        route: '/dashboard',   
+        router: '/dashboard',
       },
     ],
     menuPopoverVisible: false,
@@ -71,13 +71,13 @@ export default {
       const { locationPathname } = yield select(_ => _.app)
       if (success && user) {
         const { list } = yield call(menusService.query)
+        console.log(list, 'list')
         const { permissions } = user
         let menu = list
         if (permissions.role === EnumRoleType.ADMIN || permissions.role === EnumRoleType.DEVELOPER) {
           permissions.visit = list.map(item => item.id)
         } else {
           menu = list.filter((item) => {
-            console.log(item, 56302)
             const cases = [
               permissions.visit.includes(item.id),
               item.mpid ? permissions.visit.includes(item.mpid) || item.mpid === '-1' : true,
@@ -86,6 +86,7 @@ export default {
             return cases.every(_ => _)
           })
         }
+        console.log(location.pathname, 'location.pathname')
         yield put({
           type: 'updateState',
           payload: {
@@ -100,6 +101,7 @@ export default {
           }))
         }
       } else if (config.openPages && config.openPages.indexOf(locationPathname) < 0) {
+        console.log(11)
         yield put(routerRedux.push({
           pathname: '/login',
           search: queryString.stringify({
@@ -118,11 +120,11 @@ export default {
           user: {},
           permissions: { visit: [] },
           menu: [{
-            id: '1',
-            icon: 'dashboard',
-            name: 'Dashboard',
-            route: '/dashboard',   
-          }],
+              id: '1',
+              icon: 'dashboard',
+              name: 'Dashboard',
+              router: '/dashboard',
+            }],
         }})
         yield put({ type: 'query' })
       } else {

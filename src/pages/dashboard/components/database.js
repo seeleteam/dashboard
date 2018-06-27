@@ -41,7 +41,7 @@ class DataBaseComponent extends React.Component {
     return (
       <div className={styles.database}>
         <b>Database Info:</b>
-        <Table pagination={false} columns={columns} rowKey={(record, key) => key} dataSource={resultData} />
+        <Table pagination={true} columns={columns} rowKey={(record, key) => key} dataSource={resultData} />
       </div>
     )
   }  
