@@ -71,7 +71,6 @@ export default {
       const { locationPathname } = yield select(_ => _.app)
       if (success && user) {
         const { list } = yield call(menusService.query)
-        console.log(list, 'list')
         const { permissions } = user
         let menu = list
         if (permissions.role === EnumRoleType.ADMIN || permissions.role === EnumRoleType.DEVELOPER) {
@@ -86,7 +85,6 @@ export default {
             return cases.every(_ => _)
           })
         }
-        console.log(location.pathname, 'location.pathname')
         yield put({
           type: 'updateState',
           payload: {
