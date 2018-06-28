@@ -25,7 +25,7 @@ export default {
         id: '1',
         icon: 'dashboard',
         name: 'Dashboard',
-        route: '/dashboard',   
+        router: '/dashboard',
       },
     ],
     menuPopoverVisible: false,
@@ -77,7 +77,6 @@ export default {
           permissions.visit = list.map(item => item.id)
         } else {
           menu = list.filter((item) => {
-            console.log(item, 56302)
             const cases = [
               permissions.visit.includes(item.id),
               item.mpid ? permissions.visit.includes(item.mpid) || item.mpid === '-1' : true,
@@ -118,11 +117,11 @@ export default {
           user: {},
           permissions: { visit: [] },
           menu: [{
-            id: '1',
-            icon: 'dashboard',
-            name: 'Dashboard',
-            route: '/dashboard',   
-          }],
+              id: '1',
+              icon: 'dashboard',
+              name: 'Dashboard',
+              router: '/dashboard',
+            }],
         }})
         yield put({ type: 'query' })
       } else {

@@ -16,9 +16,8 @@ export default modelExtend({
   effects: {
     * getMetricsData ({payload}, { put, call }) {
       let metricsdata = yield call(queryMetrics, payload)
-      console.log(333, metricsdata)
       yield put({ type: 'Metrics', payload: metricsdata.data })
-    },  
+    },
   },
 
   reducers: {

@@ -4,6 +4,7 @@ import { Table } from 'antd'
 // import { Link } from 'react-router-dom'
 import styles from './metrics.less'
 import _ from 'lodash'
+import { metricsName } from '../../../utils/metricsName'
 
 class MetricsComponent extends React.Component {
   constructor (props) {
@@ -18,6 +19,26 @@ class MetricsComponent extends React.Component {
   } 
   handName (record) {
     this.props.getMetricsName(record)
+    var pMetricsTag = record[0].substring(record[0].lastIndexOf(".") + 1)
+    switch (pMetricsTag) {
+      case "count":
+        this.props.getMetricsSelectName(metricsName.count[0].lable)
+        break
+      case "gauge":
+        this.props.getMetricsSelectName(metricsName.gauge[0].lable)
+        break
+      case "histogram":
+        this.props.getMetricsSelectName(metricsName.histogram[0].lable)
+        break
+      case "meter":
+        this.props.getMetricsSelectName(metricsName.meter[0].lable)
+        break
+      case "timer":
+        this.props.getMetricsSelectName(metricsName.timer[0].lable)
+        break
+      default:
+    }
+    this.props.getMetricsSelectTime ('15m')
   }
   render () {
     var metricsData = this.props.dashboard.MetricsData
@@ -51,14 +72,14 @@ class MetricsComponent extends React.Component {
           )
         },
       },
-    ]    
+    ]
     return (
       <div className={styles.measureMents}>
         <b>Metrics List:</b>
-        <Table pagination={false} columns={columns} rowKey={(record, key) => key} dataSource={resultData} />
+        <Table pagination={true} columns={columns} rowKey={(record, key) => key} dataSource={resultData} />
       </div>
     )
-  }  
+  }
 }
 
 const mapStateProps = (state) => {
@@ -74,6 +95,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     getMetricsName (payload) {
       dispatch({ type: 'dashboard/getMetricsName', payload })
+    },
+    getMetricsSelectTime (payload) {
+      dispatch({ type: 'dashboard/getMetricsSelectTime', payload })
+    },
+    getMetricsSelectName (payload) {
+      dispatch({ type: 'dashboard/getMetricsSelectName', payload })
     },
   }
 }

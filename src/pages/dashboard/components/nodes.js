@@ -44,11 +44,11 @@ class NodesComponent extends React.Component {
     ]
     return (
       <div className={styles.nodes}>
-        <b>Nodes List:</b>      
-        <Table pagination={false} columns={columns} rowKey={(record, key) => key} dataSource={resultData} />
+        <b>Nodes List:</b>
+        <Table pagination={true} columns={columns} rowKey={(record, key) => key} dataSource={resultData} />
       </div>
     )
-  }  
+  }
 }
 
 const mapStateProps = (state) => {

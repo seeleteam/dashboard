@@ -55,8 +55,8 @@ class Chart extends React.Component {
         <Option key={'30m'}>30m</Option>
         <Option key={'1h'}>1h</Option>
         <Option key={'1d'}>1d</Option>
-        <Option key={'7d'}>7d</Option> 
-        <Option key={'1y'}>1y</Option>                                  
+        <Option key={'7d'}>7d</Option>
+        <Option key={'1y'}>1y</Option>
       </Select>      
       <div className={styles.chart}>
         <PhysicalChartsComponent type={this.state.type} />

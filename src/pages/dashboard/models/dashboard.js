@@ -15,6 +15,8 @@ export default modelExtend({
     MetricsData: [],
 
     metricsName: '',
+    metricsSelectName: '',
+    metricsSelectTime: '',
   },
 
   subscriptions: {
@@ -60,6 +62,20 @@ export default modelExtend({
         pathname: '/chart/template',
       }))
     },
+
+    * getMetricsSelectName ({payload}, { put }) {
+      yield put({ type: 'MetricsSelectName', payload: payload })
+      yield put(routerRedux.push({
+        pathname: '/chart/template',
+      }))
+    },
+
+    * getMetricsSelectTime ({payload}, { put }) {
+      yield put({ type: 'MetricsSelectTime', payload: payload })
+      yield put(routerRedux.push({
+        pathname: '/chart/template',
+      }))
+    },
   },
 
   reducers: {
@@ -74,19 +90,19 @@ export default modelExtend({
         ...state,
         MetricsCount: payload,
       }
-    },        
+    },
     DataBases (state, { payload }) {
       return {
         ...state,
         DatabaseData: payload,
       }
-    }, 
+    },
     Nodes (state, { payload }) {
       return {
         ...state,
         NodesData: payload,
       }
-    }, 
+    },
     Metrics (state, { payload }) {
       return {
         ...state,
@@ -98,6 +114,18 @@ export default modelExtend({
         ...state,
         metricsName: payload,
       }
-    },        
+    },
+    MetricsSelectName (state, { payload }) {
+      return {
+        ...state,
+        metricsSelectName: payload,
+      }
+    },
+    MetricsSelectTime (state, { payload }) {
+      return {
+        ...state,
+        metricsSelectTime: payload,
+      }
+    },
   },
 })

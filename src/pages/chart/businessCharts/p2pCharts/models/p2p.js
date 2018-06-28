@@ -22,7 +22,6 @@ export default modelExtend({
 
     * getAddPeer ({payload}, { put, call }) {
       let AddPeerData = yield call(queryAddPeer, payload)
-      console.log(123, AddPeerData)
       yield put({ type: 'AddPeer', payload: AddPeerData.data })
     },
 
