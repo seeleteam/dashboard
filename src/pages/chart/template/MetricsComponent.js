@@ -65,13 +65,22 @@ class MetricsComponent extends React.Component {
       rangeSelector: {
         selected: 1,
       },
+      chart: {
+        height: 1000,
+        type: 'line',
+      },
       title: {
         text: 'Stat The Metrics of ' + this.props.dashboard.metricsName,
       },
       exporting: {
         enabled: true,
-      },      
-      xAxis:{ 
+      },
+      legend: {
+        enabled: true,
+        align: 'center',
+        verticalAlign: 'bottom',
+      },
+      xAxis:{
         type: 'datetime',
         dateTimeLabelFormats: {
           millisecond: '%H:%M:%S.%L',
