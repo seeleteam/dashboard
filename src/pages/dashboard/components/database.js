@@ -31,20 +31,20 @@ class DataBaseComponent extends React.Component {
           }
         }
       }
-    }     
+    }
     const columns = [
       {
         title: 'DatabaseName',
         dataIndex: 'name',
       },
-    ] 
+    ]
     return (
       <div className={styles.database}>
         <b>Database Info:</b>
         <Table pagination={true} columns={columns} rowKey={(record, key) => key} dataSource={resultData} />
       </div>
     )
-  }  
+  }
 }
 
 const mapStateProps = (state) => {

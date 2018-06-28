@@ -62,7 +62,7 @@ export default modelExtend({
         pathname: '/chart/template',
       }))
     },
-    
+
     * getMetricsSelectName ({payload}, { put }) {
       yield put({ type: 'MetricsSelectName', payload: payload })
       yield put(routerRedux.push({
@@ -90,19 +90,19 @@ export default modelExtend({
         ...state,
         MetricsCount: payload,
       }
-    },        
+    },
     DataBases (state, { payload }) {
       return {
         ...state,
         DatabaseData: payload,
       }
-    }, 
+    },
     Nodes (state, { payload }) {
       return {
         ...state,
         NodesData: payload,
       }
-    }, 
+    },
     Metrics (state, { payload }) {
       return {
         ...state,
@@ -114,19 +114,18 @@ export default modelExtend({
         ...state,
         metricsName: payload,
       }
-    },        
+    },
     MetricsSelectName (state, { payload }) {
-      console.log(payload, 12033333)
       return {
         ...state,
         metricsSelectName: payload,
       }
-    },        
+    },
     MetricsSelectTime (state, { payload }) {
       return {
         ...state,
         metricsSelectTime: payload,
       }
-    },        
+    },
   },
 })

@@ -72,14 +72,14 @@ class MetricsComponent extends React.Component {
           )
         },
       },
-    ]    
+    ]
     return (
       <div className={styles.measureMents}>
         <b>Metrics List:</b>
         <Table pagination={true} columns={columns} rowKey={(record, key) => key} dataSource={resultData} />
       </div>
     )
-  }  
+  }
 }
 
 const mapStateProps = (state) => {

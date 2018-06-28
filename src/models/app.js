@@ -99,7 +99,6 @@ export default {
           }))
         }
       } else if (config.openPages && config.openPages.indexOf(locationPathname) < 0) {
-        console.log(11)
         yield put(routerRedux.push({
           pathname: '/login',
           search: queryString.stringify({

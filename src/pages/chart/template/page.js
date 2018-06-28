@@ -18,8 +18,6 @@ class Chart extends React.Component {
   }
   componentDidMount () {
     var pMetricsName = `${this.props.dashboard.metricsName}`
-    console.log(this.props.dashboard.metricsSelectName, 'metricsSelectName')
-    console.log(this.props.dashboard.metricsSelectTime, 'metricsSelectTime')
     var pMetricsTag = pMetricsName.substring(pMetricsName.lastIndexOf(".") + 1)
     switch (pMetricsTag) {
       case "count":
@@ -75,7 +73,7 @@ class Chart extends React.Component {
           <Col style={{ marginTop: 10 }}>
             <span style={{ fontWeight: 500 }}>Last Time: </span>
             <Select
-              style={{ width: 120 }} 
+              style={{ width: 120 }}
               onChange={this.changeStatTimeRange.bind(this)}
               defaultValue={['15m']}
             >
@@ -83,8 +81,8 @@ class Chart extends React.Component {
               <Option key={'30m'}>30m</Option>
               <Option key={'1h'}>1h</Option>
               <Option key={'1d'}>1d</Option>
-              <Option key={'7d'}>7d</Option>    
-              <Option key={'1y'}>1y</Option>                              
+              <Option key={'7d'}>7d</Option>
+              <Option key={'1y'}>1y</Option>
             </Select>
           </Col>
         </Col> 
@@ -92,18 +90,18 @@ class Chart extends React.Component {
           <Col style={{ marginTop: 10 }}>
             <span style={{ fontWeight: 500 }}>Metrics Item: </span>
             <Select
-              style={{ width: 120 }} 
+              style={{ width: 120 }}
               onChange={this.changeMetricsName.bind(this)}
               defaultValue={[this.props.dashboard.metricsSelectName]}
             >
               {
                 this.state.optionsArray.map( item => {
-                  return  <Option key={item.lable}>{item.value}</Option> 
+                  return  <Option key={item.lable}>{item.value}</Option>
                 })
-              }                   
+              }
             </Select>
-          </Col>        
-        </Col>        
+          </Col>
+        </Col>
       </Row>
       <div className={styles.chart}>
         <MetricsComponent />
@@ -122,7 +120,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getMetricsData (payload) {
       dispatch({ type: METRICS_PATH, payload })
-    },   
+    },
     getMetricsSelectTime (payload) {
       dispatch({ type: 'dashboard/getMetricsSelectTime', payload })
     },

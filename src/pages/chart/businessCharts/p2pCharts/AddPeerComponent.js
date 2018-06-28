@@ -23,7 +23,6 @@ class AddPeerComponent extends React.Component {
   getOption () { 
     var SeriesArray = [] 
     var ResultData = this.props.p2p.AddPeerData
-    console.log(1111, this.props.p2p)
     if (!_.isUndefined(ResultData) && ResultData != null && ResultData.length > 0) {
       var ResultDataMeasureMent = ResultData[0]
       if (!_.isUndefined(ResultDataMeasureMent) && ResultDataMeasureMent != null) {
