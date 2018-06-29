@@ -25,7 +25,7 @@ const Sider = ({
       <Menus {...menusProps} />
       {!siderFold ? <div className={styles.switchtheme}>
         <span><Icon type="bulb" />Switch Theme</span>
-        <Switch onChange={changeTheme} defaultChecked={darkTheme} checkedChildren="Dark" unCheckedChildren="Light" />
+        <Switch onChange={changeTheme} defaultChecked={darkTheme} checkedChildren="Light" unCheckedChildren="Dark" />
       </div> : ''}
     </div>
   )
