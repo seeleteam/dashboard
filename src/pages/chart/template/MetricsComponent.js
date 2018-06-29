@@ -32,7 +32,7 @@ class MetricsComponent extends React.Component {
     }
     let params = {
       precision: 'ms',
-      sql:`SELECT last("${pMetricsSelectName}") FROM "${pMetricsName}" WHERE time >= now() - (${statTimeRange}) GROUP BY time(10s), "coinbase", "networkid", "nodename" fill(null)`,
+      sql:`SELECT last("${pMetricsSelectName}") FROM "${pMetricsName}" WHERE time >= now() - (${statTimeRange}) GROUP BY time(60s), "coinbase", "networkid", "nodename" fill(null)`,
     }
     this.props.getMetricsData(params)
   }

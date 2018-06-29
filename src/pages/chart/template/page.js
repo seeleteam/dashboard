@@ -54,7 +54,7 @@ class Chart extends React.Component {
     var pMetricsSelectName = `${this.props.dashboard.metricsSelectName}`
     this.props.getMetricsData({
       precision: 'ms',
-      sql: `SELECT last("${pMetricsSelectName}") FROM "${pMetricsName}" WHERE time >= now() - (${key}) GROUP BY time(10s), "coinbase", "networkid", "nodename" fill(null)`,
+      sql: `SELECT last("${pMetricsSelectName}") FROM "${pMetricsName}" WHERE time >= now() - (${key}) GROUP BY time(60s), "coinbase", "networkid", "nodename" fill(null)`,
     })
   }
   changeMetricsName (key) {
@@ -63,7 +63,7 @@ class Chart extends React.Component {
     var pmetricsSelectTime = `${this.props.dashboard.metricsSelectTime}`
     this.props.getMetricsData({
       precision: 'ms',
-      sql: `SELECT last("${key}") FROM "${pMetricsName}" WHERE time >= now() - (${pmetricsSelectTime}) GROUP BY time(10s), "coinbase", "networkid", "nodename" fill(null)`,
+      sql: `SELECT last("${key}") FROM "${pMetricsName}" WHERE time >= now() - (${pmetricsSelectTime}) GROUP BY time(60s), "coinbase", "networkid", "nodename" fill(null)`,
     })
   }
   render () {
@@ -80,9 +80,9 @@ class Chart extends React.Component {
               <Option key={'15m'}>15m</Option>
               <Option key={'30m'}>30m</Option>
               <Option key={'1h'}>1h</Option>
+              <Option key={'6h'}>6h</Option>
+              <Option key={'12h'}>12h</Option>
               <Option key={'1d'}>1d</Option>
-              <Option key={'7d'}>7d</Option>
-              <Option key={'1y'}>1y</Option>
             </Select>
           </Col>
         </Col> 
